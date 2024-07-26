@@ -6,6 +6,15 @@ from logging.handlers import RotatingFileHandler
 from datetime import datetime, timezone
 import pytz
 import re
+import setproctitle
+
+###========== Set process name ==========###
+
+# Get the name of the folder containing the script
+script_folder = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
+
+# Set the process title to the folder name
+setproctitle.setproctitle(script_folder)
 
 ###========== Configuration ==========###
 # Load configuration
