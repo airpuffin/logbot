@@ -44,7 +44,7 @@ class CSTFormatter(logging.Formatter):
         return f"{utc_time_str}:INFO: DTG {cst_time_str} -"
 
 logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 # Use RotatingFileHandler
 file_handler = RotatingFileHandler(
@@ -74,7 +74,7 @@ async def on_ready():
     logger.info('Bot has started and is ready.')
     print(f'Logged in as {bot.user.name}')
     bot.log_channel = bot.get_channel(LOG_CHANNEL_ID)
-    heartbeat.start()
+    # heartbeat.start()
 
 @bot.event
 async def on_message(message):
@@ -280,12 +280,12 @@ async def logadd(ctx, *, text: str):
         await bot.log_channel.send(embed=embed)
 
 ###========== Heartbeat Task ==========###
-@tasks.loop(seconds=HEARTBEAT_SEC)
-async def heartbeat():
-    utc_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-    cst_time = datetime.now(cst_tz).strftime('%Y-%m-%d %H:%M:%S')
-    heartbeat_msg = f"Heartbeat: Bot is still alive. UTC Time: {utc_time} CST Time: {cst_time}"
-    logger.info(heartbeat_msg)
+# @tasks.loop(seconds=HEARTBEAT_SEC)
+# async def heartbeat():
+#     utc_time = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+#     cst_time = datetime.now(cst_tz).strftime('%Y-%m-%d %H:%M:%S')
+#     heartbeat_msg = f"Heartbeat: Bot is still alive. UTC Time: {utc_time} CST Time: {cst_time}"
+#     logger.info(heartbeat_msg)
 
 ###========== Run Bot ==========###
 bot.run(DISCORD_TOKEN)
