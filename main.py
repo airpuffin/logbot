@@ -91,8 +91,11 @@ async def on_message(message):
         'channel': str(message.channel)
     }
     logs.append(log_entry)
-    log_msg = (f"Message from {log_entry['author']} (ID: {log_entry['author_id']}, "
-               f"Message ID: {log_entry['message_id']}): {log_entry['content']}")
+    log_msg = (f"Message from {log_entry['author']} (ID: {log_entry['author_id']}"
+               f"Time Stamp: {log_entry['timestamp']}"
+               f"Channel: {log_entry['channel']}"
+               f"Message ID: {log_entry['message_id']})"
+               f"Message Content: {log_entry['content']}")
     logger.info(log_msg)
     if bot.log_channel:
         embed = discord.Embed(title='Message Logged', description=log_msg, color=EMBED_COLOR)
