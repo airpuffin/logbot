@@ -12,8 +12,8 @@ import os
 ###========== Set process name ==========###
 
 # Get the name of the folder containing the script
-script_folder = os.path.basename(os.path.dirname(os.path.realpath(__file__)))
-
+script_folder = 'bot-' + os.path.basename(os.path.dirname(os.path.realpath(__file__)))
+print(f"Script folder name set to: {script_folder}")  # For debugging purposes
 # Set the process title to the folder name
 setproctitle.setproctitle(script_folder)
 
